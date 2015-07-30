@@ -13,6 +13,7 @@
 		CBB158DC1B69A3A3004DF3EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB158DB1B69A3A3004DF3EA /* Images.xcassets */; };
 		CBB158EB1B69A3A4004DF3EA /* ChecklistsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB158EA1B69A3A4004DF3EA /* ChecklistsTests.m */; };
 		CBB158F91B69A5F2004DF3EA /* ChecklistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB158F81B69A5F2004DF3EA /* ChecklistsViewController.m */; };
+		CBB417661B6A0AB800E52F67 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB417651B6A0AB800E52F67 /* ChecklistItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		CBB158EA1B69A3A4004DF3EA /* ChecklistsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChecklistsTests.m; sourceTree = "<group>"; };
 		CBB158F71B69A5F2004DF3EA /* ChecklistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChecklistsViewController.h; sourceTree = "<group>"; };
 		CBB158F81B69A5F2004DF3EA /* ChecklistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecklistsViewController.m; sourceTree = "<group>"; };
+		CBB417641B6A0AB800E52F67 /* ChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChecklistItem.h; path = Model/ChecklistItem.h; sourceTree = "<group>"; };
+		CBB417651B6A0AB800E52F67 /* ChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChecklistItem.m; path = Model/ChecklistItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 			children = (
 				CBB158F71B69A5F2004DF3EA /* ChecklistsViewController.h */,
 				CBB158F81B69A5F2004DF3EA /* ChecklistsViewController.m */,
+				CBB417671B6A0B4B00E52F67 /* Model */,
 				CBB158D81B69A3A3004DF3EA /* Main.storyboard */,
 				CBB158CE1B69A3A3004DF3EA /* Supporting Files */,
 			);
@@ -114,6 +118,15 @@
 				CBB158E91B69A3A4004DF3EA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CBB417671B6A0B4B00E52F67 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CBB417641B6A0AB800E52F67 /* ChecklistItem.h */,
+				CBB417651B6A0AB800E52F67 /* ChecklistItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +231,7 @@
 				CBB158D41B69A3A3004DF3EA /* AppDelegate.m in Sources */,
 				CBB158D11B69A3A3004DF3EA /* main.m in Sources */,
 				CBB158F91B69A5F2004DF3EA /* ChecklistsViewController.m in Sources */,
+				CBB417661B6A0AB800E52F67 /* ChecklistItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +420,7 @@
 				CBB158F01B69A3A4004DF3EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CBB158F11B69A3A4004DF3EA /* Build configuration list for PBXNativeTarget "ChecklistsTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +429,7 @@
 				CBB158F31B69A3A4004DF3EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
