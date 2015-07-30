@@ -61,11 +61,9 @@
     return 5;
 }
 
-//检查该层的checkmarik状态
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell
-                      atIndexPath:(NSIndexPath *)indexPath
+//配置该层的checkmark状态的方法
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem: (ChecklistItem *) item
 {
-    ChecklistItem *item = _items[indexPath.row];
     if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -74,15 +72,22 @@
     }
 }
 
-//为相应的层添加文本内容
+//配置该层的text内容的方法
+- (void)configureTextForCell:(UITableViewCell *)cell
+           withChecklistItem:(ChecklistItem *)item
+{
+    UILabel *label = (UILabel *)[cell viewWithTag:1000];
+    label.text = item.text;
+}
+
+//应用以上两个方法，为选定层配置checkmark和text
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checklistItem"];
     
     ChecklistItem *item = _items[indexPath.row];
     
-    UILabel *label = (UILabel *)[cell viewWithTag:1000];
-    
-    label.text = item.text;
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     return cell;
 }
@@ -94,7 +99,7 @@
     ChecklistItem *item = _items[indexPath.row];
     item.checked = !item.checked;
     
-    [self configureCheckmarkForCell:cell atIndexPath:indexPath];
+    [self configureCheckmarkForCell:cell withChecklistItem:item];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
