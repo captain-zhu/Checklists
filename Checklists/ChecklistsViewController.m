@@ -131,6 +131,18 @@
     [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
+- (void)addItemViewControllerDidCancel:(AddItemViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addItemViewCONtroler:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 
 
 
