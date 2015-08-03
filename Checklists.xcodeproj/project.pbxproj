@@ -84,8 +84,8 @@
 			children = (
 				CBB158F71B69A5F2004DF3EA /* ChecklistsViewController.h */,
 				CBB158F81B69A5F2004DF3EA /* ChecklistsViewController.m */,
-				CBB417671B6A0B4B00E52F67 /* Model */,
 				CBB158D81B69A3A3004DF3EA /* Main.storyboard */,
+				CBB417671B6A0B4B00E52F67 /* Model */,
 				CBB158CE1B69A3A3004DF3EA /* Supporting Files */,
 			);
 			path = Checklists;
