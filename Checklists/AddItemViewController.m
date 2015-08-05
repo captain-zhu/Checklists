@@ -15,6 +15,15 @@
 
 @implementation AddItemViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -50,7 +59,7 @@
     item.text = self.textField.text;
     item.checked = NO;
     
-    [self.delegate addItemViewCONtroler:self didFinishAddingItem:item];
+    [self.delegate addItemViewControler:self didFinishAddingItem:item];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath

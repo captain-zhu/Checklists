@@ -50,7 +50,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="qwI-iF-aY5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="epu-R1-Yxm">
                             <connections>
-                                <segue destination="3CM-hT-3TG" kind="modal" id="PmD-pz-BRA"/>
+                                <segue destination="3CM-hT-3TG" kind="modal" identifier="AddItem" id="PmD-pz-BRA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -13,11 +13,13 @@
 
 @end
 
-@implementation ChecklistsViewController {
+@implementation ChecklistsViewController
+{
     NSMutableArray *_items;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _items = [[NSMutableArray alloc] initWithCapacity:20];
@@ -57,12 +59,14 @@
 }
 
 //设定tableview的层数
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return [_items count];
 }
 
 //配置该层的checkmark状态的方法
-- (void)configureCheckmarkForCell:(UITableViewCell *)cell withChecklistItem: (ChecklistItem *) item
+- (void)configureCheckmarkForCell:(UITableViewCell *)cell
+                withChecklistItem: (ChecklistItem *) item
 {
     if (item.checked) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -94,14 +98,16 @@
 }
 
 //如果该层的勾选了，取消勾选；若没有勾选，勾选他
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     ChecklistItem *item = _items[indexPath.row];
     [item toggleChecked];
     
-    [self configureCheckmarkForCell:cell                 withChecklistItem:item];
+    [self configureCheckmarkForCell:cell
+                  withChecklistItem:item];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -113,22 +119,8 @@
     [_items removeObjectAtIndex:indexPath.row];
     
     NSArray *indexPaths = @[indexPath];
-    [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-// 按了加号按键，添加新的一行在tableview中，同时在数据模型中添加相应数据
-- (IBAction)addItem
-{
-    NSInteger newRowIndex = [_items count];
-    
-    ChecklistItem *item = [[ChecklistItem alloc] init];
-    item.text = @"I am a new row";
-    item.checked = NO;
-    [_items addObject:item];
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex inSection:0];
-    NSArray *indexPaths = @[indexPath];
-    [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deleteRowsAtIndexPaths:indexPaths
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)addItemViewControllerDidCancel:(AddItemViewController *)controller
@@ -136,8 +128,31 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addItemViewCONtroler:(AddItemViewController *)controller didFinishAddingItem:(ChecklistItem *)item
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
 {
+    if ([segue.identifier isEqualToString:@"AddItem"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
+        
+        controller.delegate = self;
+    }
+}
+
+- (void)addItemViewControler:(AddItemViewController *)controller
+         didFinishAddingItem:(ChecklistItem *)item
+{
+    NSInteger newRowIndex = [_items count];
+    [_items addObject:item];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:newRowIndex
+                                                inSection:0];
+    
+    NSArray *indexPaths = @[indexPath];
+    [self.tableView insertRowsAtIndexPaths:indexPaths
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
