@@ -18,10 +18,35 @@
     NSMutableArray *_items;
 }
 
+- (NSString *)documentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths firstObject];
+    return documentsDirectory;
+}
+
+- (NSString *)dataFilePath
+{
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"Checklists.plists"];
+}
+
+- (void)saveChecklistItems
+{
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc]
+                                 initForWritingWithMutableData:data];
+    [archiver encodeObject:_items forKey:@"ChecklistItems"];
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"Documents folder is %@", [self documentsDirectory]);
+    NSLog(@"Data file path is %@", [self dataFilePath]);
+    
     _items = [[NSMutableArray alloc] initWithCapacity:20];
     
     ChecklistItem *item;
@@ -112,6 +137,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [self configureCheckmarkForCell:cell
                   withChecklistItem:item];
     
+    [self saveChecklistItems];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -120,6 +146,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                                             forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_items removeObjectAtIndex:indexPath.row];
+    [self saveChecklistItems];
     
     NSArray *indexPaths = @[indexPath];
     [self.tableView deleteRowsAtIndexPaths:indexPaths
@@ -167,6 +194,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [self.tableView insertRowsAtIndexPaths:indexPaths
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    [self saveChecklistItems];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -179,6 +207,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     [self configureTextForCell:cell withChecklistItem:item];
+    [self saveChecklistItems];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
