@@ -126,7 +126,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                           withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void)addItemViewControllerDidCancel:(AddItemViewController *)controller
+- (void)itemDetailViewControllerDidCancel:(itemDetailViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -137,13 +137,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if ([segue.identifier isEqualToString:@"AddItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         
-        AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
+        itemDetailViewController *controller = (itemDetailViewController *)navigationController.topViewController;
         
         controller.delegate = self;
     } else if ([segue.identifier isEqualToString:@"EditItem"]) {
         UINavigationController *navigationController = segue.destinationViewController;
         
-        AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
+        itemDetailViewController *controller = (itemDetailViewController *)navigationController.topViewController;
         
         controller.delegate = self;
         
@@ -154,7 +154,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
-- (void)addItemViewControler:(AddItemViewController *)controller
+- (void)itemDetailViewControler:(itemDetailViewController *)controller
          didFinishAddingItem:(ChecklistItem *)item
 {
     NSInteger newRowIndex = [_items count];
@@ -170,6 +170,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)itemDetailViewController:(itemDetailViewController *)controller
+         didFinishEditingItem:(ChecklistItem *)item
+{
+    NSInteger index = [_items indexOfObject:item];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    [self configureTextForCell:cell withChecklistItem:item];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 
