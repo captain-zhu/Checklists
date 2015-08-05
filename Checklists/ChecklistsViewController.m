@@ -68,11 +68,13 @@
 - (void)configureCheckmarkForCell:(UITableViewCell *)cell
                 withChecklistItem: (ChecklistItem *) item
 {
+    UILabel *label = (UILabel *)[cell viewWithTag:1001];
+    
     if (item.checked) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        label.text = @"√";
     }
     else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        label.text = @"";
     }
 }
 
@@ -85,7 +87,8 @@
 }
 
 //应用以上两个方法，为选定层配置checkmark和text
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"checklistItem"];
     
@@ -137,6 +140,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
         
         controller.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"EditItem"]) {
+        UINavigationController *navigationController = segue.destinationViewController;
+        
+        AddItemViewController *controller = (AddItemViewController *)navigationController.topViewController;
+        
+        controller.delegate = self;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        controller.itemToEdit = _items[indexPath.row];
+        
     }
 }
 

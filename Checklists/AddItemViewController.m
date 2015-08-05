@@ -27,6 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.itemToEdit != nil) {
+        self.title = @"Edit Item";
+        self.textField.text = self.itemToEdit.text;
+    }
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

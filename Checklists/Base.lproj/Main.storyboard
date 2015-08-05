@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell tag="1000" contentMode="left" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="checklistItem" id="yuv-pG-su6">
+                            <tableViewCell tag="1000" contentMode="left" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="checklistItem" id="yuv-pG-su6">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yuv-pG-su6" id="xHj-7f-J3t">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -25,21 +25,35 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="8" y="0.0" width="384" height="35"/>
+                                                <rect key="frame" x="38" y="0.0" width="354" height="35"/>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj5-hn-BFb">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="8" width="15" height="27"/>
                                             </variation>
                                         </label>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="0Hi-5r-9hc"/>
+                                            <exclude reference="Qj5-hn-BFb"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="0Hi-5r-9hc"/>
+                                            <include reference="Qj5-hn-BFb"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="3CM-hT-3TG" kind="modal" identifier="EditItem" trigger="accessoryAction" id="RMJ-wP-OOs"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -166,4 +180,7 @@
             <point key="canvasLocation" x="2067" y="448"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RMJ-wP-OOs"/>
+    </inferredMetricsTieBreakers>
 </document>

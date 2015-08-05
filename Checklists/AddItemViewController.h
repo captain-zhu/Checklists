@@ -22,6 +22,7 @@
 
 @interface AddItemViewController : UITableViewController<UITextViewDelegate>
 
+@property (nonatomic, strong) ChecklistItem *itemToEdit;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 @property (nonatomic, weak) id <AddItemViewControllerDelegate> delegate;
