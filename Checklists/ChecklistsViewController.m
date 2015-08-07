@@ -40,41 +40,32 @@
     [data writeToFile:[self dataFilePath] atomically:YES];
 }
 
+- (void)loadChecklistItems
+{
+    NSString *path = [self dataFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        
+        _items =[unarchiver decodeObjectForKey:@"ChecklistItems"];
+        [unarchiver finishDecoding];
+    } else {
+        _items = [[NSMutableArray alloc] initWithCapacity:20];
+    }
+}
+
+
+- (id)initWithCoder:(NSCoder *)aDecorder
+{
+    if ((self = [super initWithCoder:aDecorder])) {
+        [self loadChecklistItems];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSLog(@"Documents folder is %@", [self documentsDirectory]);
-    NSLog(@"Data file path is %@", [self dataFilePath]);
-    
-    _items = [[NSMutableArray alloc] initWithCapacity:20];
-    
-    ChecklistItem *item;
-    
-    item = [[ChecklistItem alloc] init];
-    item.text = @"Walk the dog";
-    item.checked = NO;
-    [_items addObject:item];
-    
-    item = [[ChecklistItem alloc] init];
-    item.text = @"Brush my teeth";
-    item.checked = YES;
-    [_items addObject:item];
-    
-    item = [[ChecklistItem alloc] init];
-    item.text = @"Learn iOS development";
-    item.checked = YES;
-    [_items addObject:item];
-    
-    item = [[ChecklistItem alloc] init];
-    item.text = @"Soccer practice";
-    item.checked = NO;
-    [_items addObject:item];
-    
-    item = [[ChecklistItem alloc] init];
-    item.text = @"Eat ice cream";
-    item.checked = YES;
-    [_items addObject:item];
     
 }
 
