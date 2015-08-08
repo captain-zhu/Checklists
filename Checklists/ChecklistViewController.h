@@ -1,5 +1,5 @@
 //
-//  ChecklistsViewController.h
+//  ChecklistViewController.h
 //  Checklists
 //
 //  Created by zhu yongxuan on 15/7/30.
@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "itemDetailViewController.h"
 
-@interface ChecklistsViewController : UITableViewController
+@class Checklist;
+
+@interface ChecklistViewController : UITableViewController
                              <itemDetailViewControllerDelegate>
+
+@property (nonatomic, strong) Checklist *checklist;
 
 @end
