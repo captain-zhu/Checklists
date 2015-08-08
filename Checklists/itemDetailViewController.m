@@ -5,15 +5,14 @@
 //  Created by zhu yongxuan on 15/8/3.
 //  Copyright (c) 2015年 zhu yongxuan. All rights reserved.
 //
-
-#import "itemDetailViewController.h"
+#import "ItemDetailViewController.h"
 #import "ChecklistItem.h"
 
-@interface itemDetailViewController ()
+@interface ItemDetailViewController ()
 
 @end
 
-@implementation itemDetailViewController
+@implementation ItemDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,7 +23,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     if (self.itemToEdit != nil) {
@@ -32,12 +32,6 @@
         self.textField.text = self.itemToEdit.text;
         self.doneBarButton.enabled = YES;
     }
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,12 +41,11 @@
     [self.textField becomeFirstResponder];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
 
 - (IBAction)cancel
 {
@@ -66,15 +59,12 @@
         item.text = self.textField.text;
         item.checked = NO;
         
-        [self.delegate itemDetailViewControler:self
-                           didFinishAddingItem:item];
+        [self.delegate itemDetailViewController:self didFinishAddingItem:item];
+        
     } else {
         self.itemToEdit.text = self.textField.text;
-        
-        [self.delegate itemDetailViewController:self
-                           didFinishEditingItem:self.itemToEdit];
+        [self.delegate itemDetailViewController:self didFinishEditingItem:self.itemToEdit];
     }
-    
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,55 +72,13 @@
     return nil;
 }
 
-- (BOOL)textField:(UITextField *)textField
-        shouldChangeCharactersInRange:(NSRange)range
-        replacementString:(NSString *)string
+- (BOOL)textField:(UITextField *)theTextField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSString *newText = [textField.text stringByReplacingCharactersInRange:range
-                                withString:string];
+    NSString *newText = [theTextField.text stringByReplacingCharactersInRange:range withString:string];
     
     self.doneBarButton.enabled = ([newText length] > 0);
     
     return YES;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

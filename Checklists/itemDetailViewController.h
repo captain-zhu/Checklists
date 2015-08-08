@@ -8,28 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
-@class itemDetailViewController;
+@class ItemDetailViewController;
 @class ChecklistItem;
 
-@protocol itemDetailViewControllerDelegate <NSObject>
+@protocol ItemDetailViewControllerDelegate <NSObject>
 
-- (void)itemDetailViewControllerDidCancel: (itemDetailViewController *)controller;
-- (void)itemDetailViewControler: (itemDetailViewController *)controller
-         didFinishAddingItem:(ChecklistItem *)item;
-- (void)itemDetailViewController:(itemDetailViewController *)controller
-         didFinishEditingItem:(ChecklistItem *)item;
+- (void)itemDetailViewControllerDidCancel:(ItemDetailViewController *)controller;
 
+- (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishAddingItem:(ChecklistItem *)item;
+
+- (void)itemDetailViewController:(ItemDetailViewController *)controller didFinishEditingItem:(ChecklistItem *)item;
 
 @end
 
-@interface itemDetailViewController : UITableViewController<UITextViewDelegate>
+@interface ItemDetailViewController : UITableViewController <UITextFieldDelegate>
 
-@property (nonatomic, strong) ChecklistItem *itemToEdit;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
-@property (nonatomic, weak) id <itemDetailViewControllerDelegate> delegate;
 
-
+@property (nonatomic, weak) id <ItemDetailViewControllerDelegate> delegate;
+@property (nonatomic, strong) ChecklistItem *itemToEdit;
 
 - (IBAction)cancel;
 - (IBAction)done;
