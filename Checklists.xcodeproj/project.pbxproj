@@ -18,6 +18,7 @@
 		CBB158EB1B69A3A4004DF3EA /* ChecklistsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB158EA1B69A3A4004DF3EA /* ChecklistsTests.m */; };
 		CBB158F91B69A5F2004DF3EA /* ChecklistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB158F81B69A5F2004DF3EA /* ChecklistViewController.m */; };
 		CBB417661B6A0AB800E52F67 /* ChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB417651B6A0AB800E52F67 /* ChecklistItem.m */; };
+		CBBA3CD01B77839500D41039 /* IconPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBA3CCF1B77839500D41039 /* IconPickerViewController.m */; };
 		CBF4BE8E1B6F116B00782360 /* itemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF4BE8D1B6F116B00782360 /* itemDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		CBB158F81B69A5F2004DF3EA /* ChecklistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChecklistViewController.m; sourceTree = "<group>"; };
 		CBB417641B6A0AB800E52F67 /* ChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChecklistItem.h; path = Model/ChecklistItem.h; sourceTree = "<group>"; };
 		CBB417651B6A0AB800E52F67 /* ChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChecklistItem.m; path = Model/ChecklistItem.m; sourceTree = "<group>"; };
+		CBBA3CCE1B77839500D41039 /* IconPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconPickerViewController.h; sourceTree = "<group>"; };
+		CBBA3CCF1B77839500D41039 /* IconPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconPickerViewController.m; sourceTree = "<group>"; };
 		CBF4BE8C1B6F116B00782360 /* itemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = itemDetailViewController.h; sourceTree = "<group>"; };
 		CBF4BE8D1B6F116B00782360 /* itemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = itemDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +100,8 @@
 		CBB158CD1B69A3A3004DF3EA /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
+				CBBA3CCE1B77839500D41039 /* IconPickerViewController.h */,
+				CBBA3CCF1B77839500D41039 /* IconPickerViewController.m */,
 				CB5F2D9B1B74ED5F00DA0E7E /* ListDetailViewController.h */,
 				CB5F2D9C1B74ED5F00DA0E7E /* ListDetailViewController.m */,
 				CBAB192C1B74A99B008217BE /* AllListsViewController.h */,
@@ -254,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBAB192E1B74A99B008217BE /* AllListsViewController.m in Sources */,
+				CBBA3CD01B77839500D41039 /* IconPickerViewController.m in Sources */,
 				CB5F2D9D1B74ED5F00DA0E7E /* ListDetailViewController.m in Sources */,
 				CB9EB4341B7631B400642FC8 /* DataModel.m in Sources */,
 				CBB158F91B69A5F2004DF3EA /* ChecklistViewController.m in Sources */,
@@ -368,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				INFOPLIST_FILE = Checklists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -379,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				INFOPLIST_FILE = Checklists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
