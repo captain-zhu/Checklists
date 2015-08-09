@@ -11,7 +11,7 @@
 @class DataModel;
 
 @interface AllListsViewController : UITableViewController
-<ListDetailViewControllerDelegate>
+<ListDetailViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) DataModel *dataModel;
 
