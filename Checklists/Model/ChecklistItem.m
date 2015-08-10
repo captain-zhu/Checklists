@@ -8,6 +8,7 @@
 
 #import "ChecklistItem.h"
 #import "DataModel.h"
+#import <UIKit/UIKit.h>
 
 @implementation ChecklistItem
 
@@ -45,5 +46,76 @@
     [aCoder encodeInteger:self.itemId forKey:@"ItemId"];
     
 }
+
+- (void)scheduleNotification
+{
+    if (self.shouldRemind &&
+        [self.dueDate compare:[NSDate date]] != NSOrderedAscending)
+    {
+        UILocalNotification *existingNotification = [self notificationForThisItem];
+        if (existingNotification != nil) {
+            NSLog(@"Found an existing notification %@",
+                  existingNotification);
+            [[UIApplication sharedApplication]
+             cancelLocalNotification:existingNotification];
+        }
+        UILocalNotification *localNotification =
+        [[UILocalNotification alloc] init];
+        localNotification.fireDate = self.dueDate;
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.alertBody = self.text;
+        localNotification.soundName =
+        UILocalNotificationDefaultSoundName;
+        localNotification.userInfo = @{
+                                       @"ItemID" : @(self.itemId) };
+        [[UIApplication sharedApplication]
+         scheduleLocalNotification:localNotification];
+    }
+}
+
+- (UILocalNotification *)notificationForThisItem
+{
+    NSArray *allNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (UILocalNotification *notification in allNotifications) {
+        NSNumber *number = [notification.userInfo objectForKey:@"ItemId"];
+        
+        if (number != nil && [number integerValue] == self.itemId) {
+            return notification;
+        }
+    }
+    return nil;
+}
+
+- (void)dealloc
+{
+    UILocalNotification *existingNotification = [self
+                                                 notificationForThisItem];
+    if (existingNotification != nil) {
+        [[UIApplication sharedApplication]
+         cancelLocalNotification:existingNotification];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
